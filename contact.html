@@ -109,7 +109,14 @@
             </p>
           </div>
         </aside>
-        <form id="contact-form">
+        <form
+          id="contact-form"
+          action="https://formsubmit.co/info@scalvoraaitechnologies.com"
+          method="POST"
+        >
+          <input type="hidden" name="_subject" value="New Scalvora AI enquiry" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
           <div class="form-pair">
             <label
               >Your name<input
@@ -157,11 +164,11 @@
             ></textarea>
           </label>
           <p class="form-note">
-            Prepare and download your enquiry below, then share it with us on
-            WhatsApp using the number listed here.
+            Your enquiry will be sent securely to our team. We will get back to
+            you using the email address you provide.
           </p>
           <button class="button" type="submit">
-            Download your enquiry <span aria-hidden="true">↓</span>
+            Send your enquiry <span aria-hidden="true">↗</span>
           </button>
           <p id="form-status" role="status"></p>
         </form>

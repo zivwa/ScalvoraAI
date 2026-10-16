@@ -48,21 +48,32 @@ if (form) {
     const match = Array.from(select.options).find((o) => o.value === service);
     select.value = match ? service : "Other";
   }
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
     if (!form.reportValidity()) return;
+    const status = document.querySelector("#form-status");
+    const submitButton = form.querySelector('button[type="submit"]');
     const data = new FormData(form);
-    const content = `Scalvora AI — Enquiry\n\nName: ${data.get("name")}\nEmail: ${data.get("email")}\nCompany: ${data.get("company") || "—"}\nArea: ${data.get("service") || "General enquiry"}\n\n${data.get("message")}\n`;
-    const url = URL.createObjectURL(
-      new Blob([content], { type: "text/plain;charset=utf-8" }),
-    );
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "scalvora-enquiry.txt";
-    a.click();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
-    document.querySelector("#form-status").textContent =
-      "Your enquiry file is ready. It has not been sent; keep it to share with the Scalvora AI team.";
+    data.set("_replyto", data.get("email"));
+    status.textContent = "Sending your enquiry…";
+    submitButton.disabled = true;
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+      if (!response.ok) throw new Error(`Request failed with ${response.status}`);
+      form.reset();
+      status.textContent =
+        "Thanks — your enquiry has been sent. We will be in touch soon.";
+    } catch (error) {
+      console.error("Unable to send contact enquiry", error);
+      status.textContent =
+        "We could not send your enquiry. Please email info@scalvoraaitechnologies.com directly.";
+    } finally {
+      submitButton.disabled = false;
+    }
   });
 }
 // Use the original supplied logo automatically once it is placed in assets/logo.png.

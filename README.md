@@ -11,7 +11,7 @@ Save the original attached logo as `assets/logo.png`. The site automatically rep
 - Add confirmed contact details in `contact.html`.
 - Replace illustrative project concepts with approved case studies when available.
 - Add confirmed job openings when available.
-- The enquiry form downloads a text file locally; it does not send or store messages. Connect a form service if sending is needed.
+- The enquiry form sends submissions through FormSubmit to `info@scalvoraaitechnologies.com`. FormSubmit requires one-time activation of the recipient address after the first submission.
 
 Photography loads from Unsplash, and the Manrope font loads from Google Fonts. These require an internet connection; the site itself is static. Download and self-host images/fonts for fully offline use.
 
