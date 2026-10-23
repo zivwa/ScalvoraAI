@@ -533,6 +533,10 @@ footer {
   border-radius: 14px;
   object-position: center 42%;
 }
+.about-photo img {
+  width: 100%;
+  height: auto;
+}
 .principles {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -926,6 +930,9 @@ textarea {
   }
   .wide-photo img {
     height: 280px;
+  }
+  .about-photo img {
+    height: auto;
   }
   .principles {
     grid-template-columns: 1fr;
